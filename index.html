@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>آ کیو مارکت | A Q Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf8f5;--surface:#ffffff;--text:#1d1b2e;--muted:#6b6880;--brand:#5b3df5;--brand-t:#ffffff;--accent:#ff7a45;--line:#e8e4ee;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14121f;--surface:#1e1b2e;--text:#f1eff8;--muted:#a09cb8;--brand:#8b73ff;--brand-t:#14121f;--accent:#ff9166;--line:#332f48;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14121f;--surface:#1e1b2e;--text:#f1eff8;--muted:#a09cb8;--brand:#8b73ff;--brand-t:#14121f;--accent:#ff9166;--line:#332f48;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:10}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.logo i{font-style:normal;width:38px;height:38px;border-radius:12px;background:var(--brand);color:var(--brand-t);display:grid;place-items:center;font-size:15px;letter-spacing:-1px}
+.logo small{display:block;font-weight:400;font-size:11px;color:var(--muted);direction:ltr;text-align:right;line-height:1}
+.cartbtn{position:relative;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:12px;padding:8px 14px;font-size:14px}
+.cartbtn b{position:absolute;top:-6px;left:-6px;background:var(--accent);color:#fff;border-radius:99px;min-width:20px;height:20px;font-size:12px;display:grid;place-items:center;padding:0 5px}
+.hero{padding:44px 0 28px;text-align:center}
+.hero h1{margin:0 0 8px;font-size:clamp(26px,6vw,40px);font-weight:800}
+.hero p{margin:0 auto;max-width:480px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 6px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:99px;padding:6px 16px;font-size:14px}
+.chip.on{background:var(--brand);color:var(--brand-t);border-color:var(--brand)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;padding:16px 0 40px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.pic{aspect-ratio:1/1;background:var(--bg);display:grid;place-items:center;font-size:56px}
+.pic img{width:100%;height:100%;object-fit:cover}
+.info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h3{margin:0;font-size:16px}
+.info p{margin:0;color:var(--muted);font-size:13px;flex:1}
+.price{font-weight:800;color:var(--brand);margin-top:6px}
+.add{margin-top:8px;border:0;background:var(--brand);color:var(--brand-t);border-radius:10px;padding:9px;font-size:14px;font-weight:600}
+.empty{border:2px dashed var(--line);border-radius:20px;padding:44px 20px;text-align:center;color:var(--muted);margin:16px 0 40px}
+.empty div{font-size:44px}
+footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:13px}
+.shade{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:none}
+.shade.open{display:block}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(400px,100%);background:var(--surface);z-index:21;transform:translateX(-102%);transition:transform .25s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-weight:800}
+.x{border:0;background:none;color:var(--text);font-size:22px}
+.items{flex:1;overflow:auto;padding:8px 16px}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row .n{flex:1}
+.row small{color:var(--muted);display:block}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text)}
+.df{padding:14px 16px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.tot{display:flex;justify-content:space-between;font-weight:800}
+.main{border:0;background:var(--brand);color:var(--brand-t);border-radius:12px;padding:11px;font-weight:600;font-size:15px}
+.ghost{border:1px solid var(--line);background:none;color:var(--text);border-radius:12px;padding:10px;font-size:14px;text-align:center;text-decoration:none;display:block}
+textarea{width:100%;height:130px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font-family:inherit;font-size:13px;padding:8px;resize:none}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="logo"><i>AQ</i><div>آ کیو مارکت<small>A Q Market</small></div></div>
+  <button class="cartbtn" id="openCart">سبد خرید <b id="count">0</b></button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>به آ کیو مارکت خوش آمدید</h1>
+    <p>فروشگاه آنلاین ما؛ محصولات را ببینید، به سبد اضافه کنید و سفارش خود را ثبت کنید.</p>
+    <div class="chips" id="chips"></div>
+  </section>
+  <section id="shop"></section>
+</main>
+
+<footer><div class="wrap">© آ کیو مارکت · A Q Market</div></footer>
+
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-label="سبد خرید">
+  <div class="dh"><span>سبد خرید</span><button class="x" id="closeCart" aria-label="بستن">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="df" id="foot"></div>
+</aside>
+
+<script>
+/* ===== تنظیمات فروشگاه ===== */
+var STORE = {
+  telegram: "",   // مثال: "aqmarket" (آیدی تلگرام بدون @)
+  whatsapp: "",   // مثال: "989121234567"
+  instagram: ""   // مثال: "aqmarket"
+};
+
+/* ===== محصولات =====
+   برای افزودن محصول، یک خط مثل نمونه‌ی زیر اضافه کنید:
+   { id: 1, name: "نام محصول", price: 150000, desc: "توضیح کوتاه", emoji: "🎁", category: "دسته", image: "" }
+*/
+var PRODUCTS = [
+  { id: 1, name: "کانفیگ نامحدود | یک‌ماهه | تک‌نفره", price: 200000, desc: "حجم نامحدود، مدت ۱ ماه، مخصوص ۱ کاربر", emoji: "🔐", category: "کانفیگ", image: "" },
+  { id: 2, name: "کانفیگ نامحدود | دوماهه | تک‌نفره", price: 300000, desc: "حجم نامحدود، مدت ۲ ماه، مخصوص ۱ کاربر", emoji: "🔐", category: "کانفیگ", image: "" }
+];
+
+/* ===== کد فروشگاه ===== */
+var cart = {}, filter = "";
+try { cart = JSON.parse(localStorage.getItem("aq_cart") || "{}") || {}; } catch (e) { cart = {}; }
+function save() { try { localStorage.setItem("aq_cart", JSON.stringify(cart)); } catch (e) {} }
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function money(n) { return Number(n).toLocaleString("fa-IR") + " تومان"; }
+function find(id) { for (var i = 0; i < PRODUCTS.length; i++) if (String(PRODUCTS[i].id) === String(id)) return PRODUCTS[i]; }
+
+function renderChips() {
+  var cats = [];
+  PRODUCTS.forEach(function (p) { if (p.category && cats.indexOf(p.category) < 0) cats.push(p.category); });
+  if (cats.length < 1) { $("chips").innerHTML = ""; return; }
+  var h = '<button class="chip' + (filter ? "" : " on") + '" data-c="">همه</button>';
+  cats.forEach(function (c) { h += '<button class="chip' + (filter === c ? " on" : "") + '" data-c="' + esc(c) + '">' + esc(c) + "</button>"; });
+  $("chips").innerHTML = h;
+}
+function renderShop() {
+  if (!PRODUCTS.length) {
+    $("shop").innerHTML = '<div class="empty"><div>🛍️</div><p>فروشگاه در حال آماده‌سازی است.<br>به‌زودی محصولات اینجا اضافه می‌شوند.</p></div>';
+    return;
+  }
+  var h = '<div class="grid">';
+  PRODUCTS.filter(function (p) { return !filter || p.category === filter; }).forEach(function (p) {
+    var pic = p.image ? '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '">' : esc(p.emoji || "🎁");
+    h += '<article class="card"><div class="pic">' + pic + '</div><div class="info"><h3>' + esc(p.name) + "</h3><p>" + esc(p.desc) + '</p><div class="price">' + money(p.price) + '</div><button class="add" data-add="' + esc(p.id) + '">افزودن به سبد</button></div></article>';
+  });
+  $("shop").innerHTML = h + "</div>";
+}
+function orderText() {
+  var t = "سفارش جدید از آ کیو مارکت:\n", sum = 0;
+  Object.keys(cart).forEach(function (id) {
+    var p = find(id); if (!p) return;
+    t += "- " + p.name + " × " + cart[id] + " = " + money(p.price * cart[id]) + "\n";
+    sum += p.price * cart[id];
+  });
+  return t + "جمع کل: " + money(sum);
+}
+function renderCart() {
+  var ids = Object.keys(cart).filter(function (id) { return find(id) && cart[id] > 0; });
+  var n = 0, sum = 0, h = "";
+  ids.forEach(function (id) {
+    var p = find(id); n += cart[id]; sum += p.price * cart[id];
+    h += '<div class="row"><div class="n">' + esc(p.name) + "<small>" + money(p.price) + '</small></div><div class="qty"><button data-q="' + esc(id) + '|1">+</button><span>' + cart[id] + '</span><button data-q="' + esc(id) + '|-1">−</button></div></div>';
+  });
+  $("count").textContent = n.toLocaleString("fa-IR");
+  $("items").innerHTML = ids.length ? h : '<p style="color:var(--muted);text-align:center;margin-top:40px">سبد خرید خالی است.</p>';
+  if (!ids.length) { $("foot").innerHTML = ""; return; }
+  var f = '<div class="tot"><span>جمع کل</span><span>' + money(sum) + '</span></div><button class="main" id="order">ثبت سفارش</button><div id="ordbox" class="hide"><textarea id="ordtxt" readonly></textarea><p style="margin:6px 0;font-size:13px;color:var(--muted)">متن سفارش را کپی کنید و برای فروشنده بفرستید:</p>';
+  var txt = encodeURIComponent(orderText());
+  if (STORE.telegram) f += '<a class="ghost" target="_blank" rel="noopener" href="https://t.me/' + esc(STORE.telegram) + '">ارسال در تلگرام</a>';
+  if (STORE.whatsapp) f += '<a class="ghost" target="_blank" rel="noopener" href="https://wa.me/' + esc(STORE.whatsapp) + "?text=" + txt + '">ارسال در واتساپ</a>';
+  if (STORE.instagram) f += '<a class="ghost" target="_blank" rel="noopener" href="https://instagram.com/' + esc(STORE.instagram) + '">پیام در اینستاگرام</a>';
+  $("foot").innerHTML = f + "</div>";
+}
+function setCart(open) { $("drawer").classList.toggle("open", open); $("shade").classList.toggle("open", open); }
+
+document.addEventListener("click", function (e) {
+  var t = e.target;
+  if (t.dataset.add) { cart[t.dataset.add] = (cart[t.dataset.add] || 0) + 1; save(); renderCart(); t.textContent = "اضافه شد ✓"; setTimeout(function () { t.textContent = "افزودن به سبد"; }, 900); }
+  else if (t.dataset.q) { var a = t.dataset.q.split("|"); cart[a[0]] = (cart[a[0]] || 0) + Number(a[1]); if (cart[a[0]] <= 0) delete cart[a[0]]; save(); renderCart(); }
+  else if (t.classList.contains("chip")) { filter = t.dataset.c; renderChips(); renderShop(); }
+  else if (t.id === "order") {
+    $("ordbox").classList.remove("hide"); $("ordtxt").value = orderText(); t.classList.add("hide");
+    try { navigator.clipboard.writeText($("ordtxt").value); } catch (err) {}
+  }
+});
+$("openCart").onclick = function () { setCart(true); };
+$("closeCart").onclick = $("shade").onclick = function () { setCart(false); };
+renderChips(); renderShop(); renderCart();
+</script>
+</body>
+</html>
